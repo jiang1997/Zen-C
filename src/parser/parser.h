@@ -594,6 +594,11 @@ void register_impl(ParserContext *ctx, const char *trait, const char *strct);
 int check_impl(ParserContext *ctx, const char *trait, const char *strct);
 
 /**
+ * @brief Checks if an impl definition already exists for the exact trait/target pair.
+ */
+int check_impl_definition(ParserContext *ctx, const char *trait, const char *strct);
+
+/**
  * @brief Registers a template.
  */
 void register_template(ParserContext *ctx, const char *name, ASTNode *node);

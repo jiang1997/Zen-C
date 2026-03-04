@@ -343,6 +343,12 @@ ASTNode *parse_impl(ParserContext *ctx, Lexer *l)
             auto_import_std_mem(ctx);
         }
 
+        // Check for impl redefinition
+        if (check_impl_definition(ctx, name1, name2))
+        {
+            zpanic_at(t1, "Redefinition of impl '%s' for '%s'", name1, name2);
+        }
+
         register_impl(ctx, name1, name2);
 
         // RAII: Check for "Drop" trait implementation

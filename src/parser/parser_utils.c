@@ -2876,6 +2876,21 @@ void register_impl(ParserContext *ctx, const char *trait, const char *strct)
     ctx->registered_impls = r;
 }
 
+int check_impl_definition(ParserContext *ctx, const char *trait, const char *strct)
+{
+    ImplReg *r = ctx->registered_impls;
+    while (r)
+    {
+        if (strcmp(r->trait, trait) == 0 && strcmp(r->strct, strct) == 0)
+        {
+            return 1;
+        }
+        r = r->next;
+    }
+
+    return 0;
+}
+
 int check_impl(ParserContext *ctx, const char *trait, const char *strct)
 {
     ImplReg *r = ctx->registered_impls;

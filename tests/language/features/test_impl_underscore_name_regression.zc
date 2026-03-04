@@ -1,0 +1,21 @@
+// Test: underscore-containing struct names should not collide with generic impls
+
+trait Marker {}
+
+struct Box<T> {
+    val: T;
+}
+
+impl Marker for Box<T> {}
+
+struct Box_A {
+    val: int;
+}
+
+impl Marker for Box_A {}
+
+fn main() {
+    let generic_box = Box<int> { val: 1 };
+    let named_box = Box_A { val: 2 };
+    println "{generic_box.val} {named_box.val}";
+}

@@ -1,0 +1,25 @@
+// EXPECT: FAIL
+// Test: trait impl redefinition should be illegal
+
+trait Drawable {
+    fn draw(self);
+}
+
+struct Point {
+    x: int;
+    y: int;
+}
+
+impl Drawable for Point {
+    fn draw(self) {
+        println "Point at ({self.x}, {self.y})";
+    }
+}
+
+impl Drawable for Point {
+    fn draw(self) {
+        println "Duplicate impl";
+    }
+}
+
+fn main() {}
